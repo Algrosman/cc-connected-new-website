@@ -108,19 +108,13 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
 .mobile-menu a:hover { color: var(--blue); }
 
 /* ---------- Hero: navy panel, photo bleeding off the right ---------- */
-/* Hero, modeled on consulting-site heroes: the photo runs under the whole right side, a dark navy
-   gradient sweeps in from the left so the text reads cleanly */
-.hero { position: relative; color: var(--white); overflow: hidden; background-color: #0f2c50;
-  background-image: radial-gradient(60% 90% at 0% 100%, rgba(27, 118, 56, 0.32), transparent 70%), radial-gradient(50% 80% at 20% 0%, rgba(31, 155, 224, 0.22), transparent 75%); }
-.hero-media { position: absolute; top: 0; right: 0; bottom: 0; left: 26%; overflow: hidden; }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 35%; }
-.hero-media { z-index: 0; }
-.hero-media img { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%); mask-image: linear-gradient(90deg, transparent 0%, #000 22%); }
-/* The dark sweep covers the whole hero, so there is no visible edge where the photo begins */
-.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(90deg, rgba(15, 44, 80, 0.6) 0%, rgba(15, 44, 80, 0.8) 34%, rgba(15, 44, 80, 0.55) 52%, rgba(15, 44, 80, 0.14) 76%, rgba(15, 44, 80, 0.04) 100%); }
+/* Hero, modeled on consulting-site heroes: deep navy with a glowing, slowly turning globe of points
+   on the right. Arcs run from Cleveland to the cities of Cleveland Clinic Connected members. */
+.hero { position: relative; color: var(--white); overflow: hidden; background-color: #071c38;
+  background-image: radial-gradient(48% 70% at 74% 52%, rgba(31, 155, 224, 0.22), transparent 70%), radial-gradient(40% 60% at 0% 100%, rgba(27, 118, 56, 0.22), transparent 70%); }
+.hero-visual { position: absolute; top: 0; bottom: 0; right: 0; left: max(44%, calc(max(0px, (100% - var(--wrap)) / 2) + 600px)); pointer-events: none; }
+.hero-globe { display: block; width: 100%; height: 100%; }
 .hero-inner { z-index: 2; }
-
 .hero-inner { position: relative; padding-top: 22px; padding-bottom: 76px; min-height: 520px; display: flex; flex-direction: column; }
 .crumbs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13.5px; color: var(--slate-on-navy); }
 .crumbs li + li::before { content: ">"; margin-right: 12px; }
@@ -432,10 +426,7 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
   :root { --gutter: 24px; }
   .main-nav { display: none; }
   .header-cta { margin-left: auto; }
-  .hero-media { position: relative; left: auto; height: 280px; }
-  .hero::before { display: none; }
-  .hero-media img { -webkit-mask-image: none; mask-image: none; }
-  .hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, #0f2c50 0%, rgba(15, 44, 80, 0.55) 30%, rgba(15, 44, 80, 0.08) 70%); }
+  .hero-visual { position: relative; left: auto; height: 300px; }
   .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
   .crumbs { display: none; }
   .hero-copy { padding-top: 8px; max-width: none; }
@@ -479,7 +470,7 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
   .header-row { min-height: 64px; gap: 12px; }
   .brand img { width: 196px; }
   .header-cta { padding: 9px 13px; font-size: 15px; }
-  .hero-media { height: 200px; }
+  .hero-visual { height: 260px; }
   .hero h1 { font-size: 32px; }
   .hero-strap { font-size: 17.5px; }
   .hero-lede { font-size: 16.5px; }
