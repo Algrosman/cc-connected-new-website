@@ -125,7 +125,7 @@ object-fit: cover; object-position: left bottom; opacity: 0.55;
 mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
 }
 .hero-worldmap {
-position: absolute; top: 50%; right: 0; transform: translateY(-50%);
+position: absolute; top: 50%; right: max(-7.5%, -112px); transform: translateY(-50%);
 width: 97%; max-width: 1420px; height: auto; opacity: 0.48; display: block;
 -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
 mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
