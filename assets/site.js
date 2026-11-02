@@ -119,7 +119,7 @@
   var nowEl = $("#storiesNow"), allEl = $("#storiesAll"), pauseBtn = $(".stories-pause", root);
   /* Each story shows its photos one after another (PHOTO ms each), then moves on.
      A story stays up at least MIN_DWELL ms so there is time to read it. */
-  var PHOTO = 3500, MIN_DWELL = 10000;
+  var PHOTO = 2500, MIN_DWELL = 10000;
   var index = 0, elapsed = 0, last = null, shownPhoto = -1;
   var photoSets = slides.map(function (s) { return $all(".story-photo img", s); });
   var photoDots = slides.map(function (s, i) {
@@ -129,7 +129,7 @@
       var b = document.createElement("button");
       b.type = "button";
       b.setAttribute("aria-label", "Photo " + (k + 1) + " of " + photoSets[i].length);
-      b.addEventListener("click", function () { elapsed = k * (dwell(i) / photoSets[i].length); showPhoto(k); });
+      b.addEventListener("click", function () { elapsed = k * PHOTO; showPhoto(k); });
       box.appendChild(b);
       return b;
     });
@@ -192,7 +192,7 @@
       if (elapsed >= dwell(index)) { go(index + 1, false); }
     }
     var D = dwell(index), n = photoSets[index].length;
-    if (n > 1) showPhoto(Math.min(n - 1, Math.floor(elapsed / (D / n))));
+    if (n > 1) showPhoto(Math.min(n - 1, Math.floor(elapsed / PHOTO)));
     var fill = dots[index].querySelector(".fill");
     fill.style.setProperty("--p", Math.min(elapsed / D, 1).toFixed(4));
     requestAnimationFrame(tick);
