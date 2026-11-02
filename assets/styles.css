@@ -119,16 +119,23 @@ background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(
 }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; }
 .hero-wave {
-position: absolute; left: 0; bottom: 0; width: 55%; height: 88%; display: block;
-object-fit: cover; object-position: left bottom; opacity: 0.55;
+position: absolute; left: 0; bottom: 0; width: 62%; height: 100%; display: block;
+object-fit: cover; object-position: left bottom; opacity: 0.32;
 -webkit-mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
 mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
 }
+/* Map size and position keep its markers between the text column and the right edge:
+   the U.S. markers start 24px past the text (text column = 572px from the content edge),
+   and the last Vietnam marker ends 40px from the right edge. In the image, the markers
+   span 27.7% to 89.2% of its width. */
 .hero-worldmap {
-position: absolute; top: 50%; right: max(-7.5%, -112px); transform: translateY(-50%);
-width: 97%; max-width: 1420px; height: auto; opacity: 0.48; display: block;
--webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+--mapw: clamp(55%, calc((100% - 636px - max(0px, 50% - 600px)) / 0.615), min(97%, 1420px));
+position: absolute; top: 50%; right: calc(40px - 0.108 * var(--mapw)); transform: translateY(-50%);
+width: var(--mapw); height: auto; opacity: 0.48; display: block;
+-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%), linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+-webkit-mask-composite: source-in;
+mask-image: linear-gradient(90deg, transparent 0%, #000 22%), linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+mask-composite: intersect;
 }
 .hero-inner { position: relative; padding-top: 22px; padding-bottom: 76px; min-height: 520px; display: flex; flex-direction: column; }
 .crumbs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13.5px; color: var(--slate-on-navy); }
@@ -443,7 +450,7 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 .main-nav { display: none; }
 .header-cta { margin-left: auto; }
 .hero-worldmap { opacity: 0.3; right: -12%; width: 120%; }
-.hero-wave { width: 100%; height: 80%; opacity: 0.35; }
+.hero-wave { width: 100%; height: 100%; opacity: 0.22; }
 .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
 .crumbs { display: none; }
 .hero-copy { padding-top: 8px; max-width: none; }
