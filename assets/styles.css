@@ -119,7 +119,7 @@ background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(
 }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; }
 .hero-wave {
-position: absolute; left: 0; bottom: 0; width: 52%; height: 62%; display: block;
+position: absolute; left: 0; bottom: 0; width: 55%; height: 88%; display: block;
 object-fit: cover; object-position: left bottom; opacity: 0.55;
 -webkit-mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
 mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
@@ -443,7 +443,7 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 .main-nav { display: none; }
 .header-cta { margin-left: auto; }
 .hero-worldmap { opacity: 0.3; right: -12%; width: 120%; }
-.hero-wave { width: 100%; height: 60%; opacity: 0.35; }
+.hero-wave { width: 100%; height: 80%; opacity: 0.35; }
 .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
 .crumbs { display: none; }
 .hero-copy { padding-top: 8px; max-width: none; }
