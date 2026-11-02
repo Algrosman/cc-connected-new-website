@@ -187,6 +187,9 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
 .includes p { color: var(--slate); font-size: 15px; line-height: 1.5; margin-top: 6px; }
 .includes a { color: var(--blue-dark); font-weight: 500; white-space: nowrap; }
 .network { margin-top: 72px; }
+.network-section .network { margin-top: 0; }
+.expertise-block { margin-top: 72px; }
+.expertise-block .domains { margin-top: 36px; }
 .network-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
 .network-title { font-size: 26px; font-weight: 300; color: var(--ink); }
 .network-lede { color: var(--slate); font-size: 16px; }
@@ -252,10 +255,6 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
 .rm-flag .rm-node { background: var(--green); color: var(--white); box-shadow: 0 0 0 6px rgba(143, 214, 162, 0.18); }
 .rm-flag-name { margin-top: 16px; font-size: 23px; font-weight: 300; line-height: 1.15; }
 .rm-flag-note { margin-top: 6px; font-size: 14.5px; line-height: 1.45; color: var(--green-on-navy); max-width: 16ch; }
-/* Hovering an item lights up its domain across the phases */
-.roadmap[data-focus] .rm-items .rm-item { opacity: 0.35; }
-.roadmap[data-focus="fin"] .rm-items .rm-item[data-lane="fin"], .roadmap[data-focus="sqpe"] .rm-items .rm-item[data-lane="sqpe"],
-.roadmap[data-focus="dig"] .rm-items .rm-item[data-lane="dig"], .roadmap[data-focus="edu"] .rm-items .rm-item[data-lane="edu"] { opacity: 1; }
 /* Entrance: each marker lights up, its items rise in, and the line draws on to the next */
 .rm-anim .rm-node { transform: scale(0.5); opacity: 0; }
 .rm-anim .rm-name, .rm-anim .rm-when, .rm-anim .rm-item, .rm-anim .rm-flag-name, .rm-anim .rm-flag-note { opacity: 0; transform: translateY(10px); }

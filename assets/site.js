@@ -45,7 +45,7 @@
     bars.forEach(function (el) { barObs.observe(el); });
   }
 
-  /* ---------- Package roadmap: fill in on first view, light up a domain on hover ---------- */
+  /* ---------- Package roadmap: fill in on first view ---------- */
   var rm = $("#roadmap");
   if (rm) {
     if (!reduceMotion && "IntersectionObserver" in window) {
@@ -60,10 +60,6 @@
       }, { threshold: 0.3 });
       rmObs.observe(rm);
     }
-    $all("[data-lane]", rm).forEach(function (el) {
-      el.addEventListener("mouseenter", function () { rm.setAttribute("data-focus", el.getAttribute("data-lane")); });
-      el.addEventListener("mouseleave", function () { rm.removeAttribute("data-focus"); });
-    });
   }
 
   /* ---------- Existing hospitals: priority wheel ---------- */
