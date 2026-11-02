@@ -108,21 +108,24 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
 .mobile-menu a:hover { color: var(--blue); }
 
 /* ---------- Hero: navy panel, photo bleeding off the right ---------- */
-/* Hero: a layered blue-to-green gradient,
-   and the photo on a slanted edge on the right */
-.hero { position: relative; color: var(--white); overflow: hidden; background-color: var(--navy);
-  background-image:
-    radial-gradient(55% 75% at 0% 100%, rgba(27, 118, 56, 0.55), transparent 70%),
-    radial-gradient(45% 65% at 38% 0%, rgba(31, 155, 224, 0.38), transparent 75%),
-    linear-gradient(115deg, #0f2c50 0%, #1b477b 48%, #0a5c9c 100%); }
-/* The photo meets the gradient on a slanted edge, traced by a thin green-to-blue accent */
-.hero-media::before {
-  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg, var(--green-on-navy), var(--blue-bright));
-  clip-path: polygon(14% 0, calc(14% + 6px) 0, 6px 100%, 0 100%);
-}
-.hero-media { position: absolute; top: 0; right: 0; bottom: 0; left: max(46%, calc(max(0px, (100% - var(--wrap)) / 2) + 628px)); }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 40%; clip-path: polygon(calc(14% + 11px) 0, 100% 0, 100% 100%, 11px 100%); }
+/* Hero, modeled on consulting-site heroes: the photo runs under the whole right side, a dark navy
+   gradient sweeps in from the left so the text reads cleanly, and thin green and blue rings
+   arc across the photo */
+.hero { position: relative; color: var(--white); overflow: hidden; background-color: #0f2c50;
+  background-image: radial-gradient(60% 90% at 0% 100%, rgba(27, 118, 56, 0.32), transparent 70%), radial-gradient(50% 80% at 20% 0%, rgba(31, 155, 224, 0.22), transparent 75%); }
+.hero-media { position: absolute; top: 0; right: 0; bottom: 0; left: 26%; overflow: hidden; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 35%; }
+.hero-media { z-index: 0; }
+.hero-media img { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%); mask-image: linear-gradient(90deg, transparent 0%, #000 22%); }
+/* The dark sweep covers the whole hero, so there is no visible edge where the photo begins */
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(15, 44, 80, 0.6) 0%, rgba(15, 44, 80, 0.8) 34%, rgba(15, 44, 80, 0.55) 52%, rgba(15, 44, 80, 0.14) 76%, rgba(15, 44, 80, 0.04) 100%); }
+.hero-inner { z-index: 2; }
+.hero-rings { position: absolute; top: 50%; right: -9%; width: min(820px, 88%); aspect-ratio: 1; transform: translateY(-50%); pointer-events: none; overflow: visible; }
+.hero-rings circle { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.hero-rings .r-green { stroke: #8fd6a2; opacity: 0.85; }
+.hero-rings .r-blue { stroke: #4fb3ef; opacity: 0.75; }
+.hero-rings .r-faint { stroke: rgba(255, 255, 255, 0.35); }
 .hero-inner { position: relative; padding-top: 22px; padding-bottom: 76px; min-height: 520px; display: flex; flex-direction: column; }
 .crumbs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13.5px; color: var(--slate-on-navy); }
 .crumbs li + li::before { content: ">"; margin-right: 12px; }
@@ -434,10 +437,11 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
   :root { --gutter: 24px; }
   .main-nav { display: none; }
   .header-cta { margin-left: auto; }
-  .hero-media { position: relative; width: auto; height: 260px; }
-  .hero-media { left: auto; }
-  .hero-media img { clip-path: polygon(0 0, 100% 0, 100% 78%, 0 94%); }
-  .hero-media::before { background: linear-gradient(90deg, var(--green-on-navy), var(--blue-bright)); clip-path: polygon(0 calc(94% + 5px), 100% calc(78% + 5px), 100% calc(78% + 10px), 0 calc(94% + 10px)); }
+  .hero-media { position: relative; left: auto; height: 280px; }
+  .hero::before { display: none; }
+  .hero-media img { -webkit-mask-image: none; mask-image: none; }
+  .hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, #0f2c50 0%, rgba(15, 44, 80, 0.55) 30%, rgba(15, 44, 80, 0.08) 70%); }
+  .hero-rings { top: 50%; right: -18%; width: 78%; }
   .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
   .crumbs { display: none; }
   .hero-copy { padding-top: 8px; max-width: none; }
