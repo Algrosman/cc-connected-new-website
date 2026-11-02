@@ -122,11 +122,18 @@ background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(
 .hero-blob-a { left: 3%; top: 44%; width: 29vw; height: 29vw; max-width: 420px; max-height: 420px; }
 .hero-blob-b { left: 11%; bottom: -31%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; background: radial-gradient(circle, rgba(31, 155, 110, 0.32) 0%, rgba(31, 155, 110, 0) 70%); }
 .hero-blob-c { left: -8%; top: 32%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; }
+/* Map size and position keep its markers between the text column and the right edge:
+   the U.S. markers start 24px past the text (text column = 572px from the content edge),
+   and the last Vietnam marker ends 40px from the right edge. In the image, the markers
+   span 27.7% to 89.2% of its width. */
 .hero-worldmap {
-position: absolute; top: 50%; right: max(-7.5%, -112px); transform: translateY(-50%);
-width: 97%; max-width: 1420px; height: auto; opacity: 0.48; display: block;
--webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+--mapw: clamp(55%, calc((100% - 636px - max(0px, 50% - 600px)) / 0.615), min(97%, 1420px));
+position: absolute; top: 50%; right: calc(40px - 0.108 * var(--mapw)); transform: translateY(-50%);
+width: var(--mapw); height: auto; opacity: 0.48; display: block;
+-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%), linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+-webkit-mask-composite: source-in;
+mask-image: linear-gradient(90deg, transparent 0%, #000 22%), linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+mask-composite: intersect;
 }
 .hero-inner { position: relative; padding-top: 22px; padding-bottom: 76px; min-height: 520px; display: flex; flex-direction: column; }
 .crumbs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13.5px; color: var(--slate-on-navy); }
