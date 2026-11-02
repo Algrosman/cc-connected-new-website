@@ -107,28 +107,27 @@ mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox=
 .mobile-menu a:last-child { border-bottom: 0; }
 .mobile-menu a:hover { color: var(--blue); }
 
-/* ---------- Hero: navy gradient panel with the photo capped at native width on the right ---------- */
-/* Hero, modeled on consulting-site heroes: the photo sits in a right-hand panel sized to its own
-780x440 source (so it is never upscaled and stays sharp), and a navy-to-blue brand gradient fills
-the rest of the band so the headline reads cleanly. The photo's left edge feathers into the
-gradient so there is no visible seam. */
+/* ---------- Hero: minimal navy panel with brand-green accents and a subtle global network map ---------- */
+/* Hero, modeled on consulting-site heroes: a solid navy gradient fills the band so the headline
+reads cleanly, soft brand-green blobs sit low on the left for texture, and a dimmed, zoomed-in
+dot-matrix world map (with a marker at Cleveland Clinic Main Campus and each Cleveland Clinic
+Connected member hospital, joined by route lines) sits on the right as a quiet backdrop. */
 .hero {
 position: relative; color: var(--white); overflow: hidden;
-display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 750px); align-items: center;
 background-color: var(--navy-deep);
-background-image:
-radial-gradient(60% 90% at 0% 100%, rgba(27, 118, 56, 0.32), transparent 70%),
-radial-gradient(50% 80% at 20% 0%, rgba(31, 155, 224, 0.22), transparent 75%),
-linear-gradient(100deg, var(--navy-deep) 0%, var(--navy) 58%, var(--blue-dark) 100%);
+background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(--navy) 100%);
 }
-.hero-media { order: 2; position: relative; width: 100%; aspect-ratio: 780 / 440; overflow: hidden; }
-.hero-media img {
-width: 100%; height: 100%; object-fit: cover; object-position: 55% 35%; display: block;
--webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
-mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
+.hero-bg { position: absolute; inset: 0; overflow: hidden; }
+.hero-blob { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(27, 118, 56, 0.4) 0%, rgba(27, 118, 56, 0) 70%); }
+.hero-blob-a { left: 3%; top: 44%; width: 29vw; height: 29vw; max-width: 420px; max-height: 420px; }
+.hero-blob-b { left: 11%; bottom: -31%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; background: radial-gradient(circle, rgba(31, 155, 110, 0.32) 0%, rgba(31, 155, 110, 0) 70%); }
+.hero-blob-c { left: -8%; top: 42%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; }
+.hero-worldmap {
+position: absolute; top: 50%; right: -10%; transform: translateY(-50%);
+width: 97%; max-width: 1420px; height: auto; opacity: 0.48; display: block;
+-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
 }
-.hero-inner { order: 1; }
-
 .hero-inner { position: relative; padding-top: 22px; padding-bottom: 76px; min-height: 520px; display: flex; flex-direction: column; }
 .crumbs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13.5px; color: var(--slate-on-navy); }
 .crumbs li + li::before { content: ">"; margin-right: 12px; }
@@ -440,11 +439,9 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 :root { --gutter: 24px; }
 .main-nav { display: none; }
 .header-cta { margin-left: auto; }
-.hero { grid-template-columns: 1fr; }
-.hero-media { order: 1; aspect-ratio: auto; height: 280px; }
-.hero-inner { order: 2; }
-.hero-media img { -webkit-mask-image: none; mask-image: none; }
-.hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, var(--navy-deep) 0%, rgba(18, 52, 92, 0.55) 30%, rgba(18, 52, 92, 0.08) 70%); }
+.hero-worldmap { opacity: 0.3; right: -28%; width: 120%; }
+.hero-blob-a, .hero-blob-c { width: 46vw; height: 46vw; }
+.hero-blob-b { width: 40vw; height: 40vw; }
 .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
 .crumbs { display: none; }
 .hero-copy { padding-top: 8px; max-width: none; }
@@ -488,7 +485,6 @@ body { font-size: 16px; }
 .header-row { min-height: 64px; gap: 12px; }
 .brand img { width: 196px; }
 .header-cta { padding: 9px 13px; font-size: 15px; }
-.hero-media { height: 200px; }
 .hero h1 { font-size: 32px; }
 .hero-strap { font-size: 17.5px; }
 .hero-lede { font-size: 16.5px; }
