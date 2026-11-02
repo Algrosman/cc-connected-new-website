@@ -123,7 +123,7 @@ background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(
 .hero-blob-b { left: 11%; bottom: -31%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; background: radial-gradient(circle, rgba(31, 155, 110, 0.32) 0%, rgba(31, 155, 110, 0) 70%); }
 .hero-blob-c { left: -8%; top: 32%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; }
 .hero-worldmap {
-position: absolute; top: 50%; right: 0; transform: translateY(-50%);
+position: absolute; top: 50%; right: max(-7.5%, -112px); transform: translateY(-50%);
 width: 97%; max-width: 1420px; height: auto; opacity: 0.48; display: block;
 -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
 mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
