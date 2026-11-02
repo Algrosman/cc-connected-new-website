@@ -109,7 +109,7 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
 
 /* ---------- Hero: navy panel, photo bleeding off the right ---------- */
 /* Hero, modeled on consulting-site heroes: the photo runs under the whole right side, a dark navy
-   gradient sweeps in from the left so the text reads cleanly, and the Cleveland Clinic mark sits in the photo's upper corner */
+   gradient sweeps in from the left so the text reads cleanly */
 .hero { position: relative; color: var(--white); overflow: hidden; background-color: #0f2c50;
   background-image: radial-gradient(60% 90% at 0% 100%, rgba(27, 118, 56, 0.32), transparent 70%), radial-gradient(50% 80% at 20% 0%, rgba(31, 155, 224, 0.22), transparent 75%); }
 .hero-media { position: absolute; top: 0; right: 0; bottom: 0; left: 26%; overflow: hidden; }
@@ -120,10 +120,7 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(90deg, rgba(15, 44, 80, 0.6) 0%, rgba(15, 44, 80, 0.8) 34%, rgba(15, 44, 80, 0.55) 52%, rgba(15, 44, 80, 0.14) 76%, rgba(15, 44, 80, 0.04) 100%); }
 .hero-inner { z-index: 2; }
-/* The Cleveland Clinic mark, semi-transparent with soft rounded corners, in the upper corner of the photo */
-.hero-bug { position: absolute; top: 36px; right: 44px; width: 132px; height: 132px; opacity: 0.55; pointer-events: none; filter: drop-shadow(0 6px 18px rgba(15, 44, 80, 0.18)); }
-.hero-bug .bug-b { fill: #007bc2; }
-.hero-bug .bug-g { fill: #1b7638; }
+
 .hero-inner { position: relative; padding-top: 22px; padding-bottom: 76px; min-height: 520px; display: flex; flex-direction: column; }
 .crumbs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13.5px; color: var(--slate-on-navy); }
 .crumbs li + li::before { content: ">"; margin-right: 12px; }
@@ -439,7 +436,6 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
   .hero::before { display: none; }
   .hero-media img { -webkit-mask-image: none; mask-image: none; }
   .hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, #0f2c50 0%, rgba(15, 44, 80, 0.55) 30%, rgba(15, 44, 80, 0.08) 70%); }
-  .hero-bug { top: 18px; right: 18px; width: 64px; height: 64px; }
   .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
   .crumbs { display: none; }
   .hero-copy { padding-top: 8px; max-width: none; }
