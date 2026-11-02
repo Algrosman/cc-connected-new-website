@@ -119,7 +119,7 @@
   var nowEl = $("#storiesNow"), allEl = $("#storiesAll"), pauseBtn = $(".stories-pause", root);
   /* Each story shows its photos one after another (PHOTO ms each), then moves on.
      A story stays up at least MIN_DWELL ms so there is time to read it. */
-  var PHOTO = 2500, MIN_DWELL = 10000;
+  var PHOTO = 2500, MIN_DWELL = 2500;
   var index = 0, elapsed = 0, last = null, shownPhoto = -1;
   var photoSets = slides.map(function (s) { return $all(".story-photo img", s); });
   var photoDots = slides.map(function (s, i) {
