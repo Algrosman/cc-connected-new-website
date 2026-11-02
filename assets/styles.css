@@ -118,10 +118,12 @@ background-color: var(--navy-deep);
 background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(--navy) 100%);
 }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; }
-.hero-blob { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(27, 118, 56, 0.4) 0%, rgba(27, 118, 56, 0) 70%); }
-.hero-blob-a { left: 3%; top: 44%; width: 29vw; height: 29vw; max-width: 420px; max-height: 420px; }
-.hero-blob-b { left: 11%; bottom: -31%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; background: radial-gradient(circle, rgba(31, 155, 110, 0.32) 0%, rgba(31, 155, 110, 0) 70%); }
-.hero-blob-c { left: -8%; top: 32%; width: 25vw; height: 25vw; max-width: 360px; max-height: 360px; }
+.hero-wave {
+position: absolute; left: 0; bottom: 0; width: 52%; height: 62%; display: block;
+object-fit: cover; object-position: left bottom; opacity: 0.55;
+-webkit-mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
+mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
+}
 .hero-worldmap {
 position: absolute; top: 50%; right: 0; transform: translateY(-50%);
 width: 97%; max-width: 1420px; height: auto; opacity: 0.48; display: block;
@@ -441,8 +443,7 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 .main-nav { display: none; }
 .header-cta { margin-left: auto; }
 .hero-worldmap { opacity: 0.3; right: -12%; width: 120%; }
-.hero-blob-a, .hero-blob-c { width: 46vw; height: 46vw; }
-.hero-blob-b { width: 40vw; height: 40vw; }
+.hero-wave { width: 100%; height: 60%; opacity: 0.35; }
 .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
 .crumbs { display: none; }
 .hero-copy { padding-top: 8px; max-width: none; }
