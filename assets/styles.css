@@ -115,14 +115,12 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
     radial-gradient(55% 75% at 0% 100%, rgba(27, 118, 56, 0.55), transparent 70%),
     radial-gradient(45% 65% at 38% 0%, rgba(31, 155, 224, 0.38), transparent 75%),
     linear-gradient(115deg, #0f2c50 0%, #1b477b 48%, #0a5c9c 100%); }
-/* A column of small Cleveland Clinic marks lines the edge where the gradient meets the photo */
+/* One line of Cleveland Clinic marks along the edge where the gradient meets the photo (a row on phones) */
 .hero-media::after {
-  content: ""; position: absolute; top: 0; bottom: 0; left: -8px; width: 128px; pointer-events: none;
-  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><defs><mask id='m'><rect width='40' height='40' fill='%23fff'/><rect x='15.36' y='15.36' width='9.28' height='9.28' rx='1' fill='%23000'/></mask></defs><g mask='url%28%23m%29'><rect x='12' y='12' width='7.46' height='7.46' rx='1.1' fill='%235cb9f0'/><rect x='20.54' y='12' width='7.46' height='7.46' rx='1.1' fill='%235cb9f0'/><rect x='12' y='20.54' width='7.46' height='7.46' rx='1.1' fill='%235fcb80'/><rect x='20.54' y='20.54' width='7.46' height='7.46' rx='1.1' fill='%235fcb80'/></g></svg>") 0 4px / 40px 40px repeat;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 45%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 45%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
-          mask-composite: intersect;
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 56px; pointer-events: none; opacity: 0.85;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><defs><mask id='m'><rect width='56' height='56' fill='%23fff'/><rect x='19.88' y='19.88' width='16.24' height='16.24' rx='1.7' fill='%23000'/></mask></defs><g mask='url%28%23m%29'><rect x='14.00' y='14.00' width='13.05' height='13.05' rx='2' fill='%235cb9f0'/><rect x='28.95' y='14.00' width='13.05' height='13.05' rx='2' fill='%235cb9f0'/><rect x='14.00' y='28.95' width='13.05' height='13.05' rx='2' fill='%235fcb80'/><rect x='28.95' y='28.95' width='13.05' height='13.05' rx='2' fill='%235fcb80'/></g></svg>") 0 8px / 56px 56px repeat-y;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
 }
 .hero-media { position: absolute; top: 0; right: 0; bottom: 0; left: max(46%, calc(max(0px, (100% - var(--wrap)) / 2) + 628px)); }
 .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 40%;
@@ -441,9 +439,8 @@ section[id], article[id], div[id] { scroll-margin-top: 12px; }
   .hero-media { position: relative; width: auto; height: 260px; }
   .hero-media img { -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
   .hero-media { left: auto; }
-  .hero-media::after { top: auto; left: 0; right: 0; bottom: 0; width: auto; height: 120px; background-position: 4px 100%;
-    -webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 45%, transparent 100%); -webkit-mask-composite: source-over;
-            mask-image: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 45%, transparent 100%); mask-composite: add; }
+  .hero-media::after { top: auto; left: 0; right: 0; bottom: 0; width: auto; height: 56px; background-repeat: repeat-x; background-position: 8px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%); }
   .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
   .crumbs { display: none; }
   .hero-copy { padding-top: 8px; max-width: none; }
