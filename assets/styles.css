@@ -118,13 +118,13 @@ background-color: var(--navy-deep);
 background-image: linear-gradient(100deg, #0e2c50 0%, var(--navy-deep) 45%, var(--navy) 100%);
 }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; }
-/* The wave starts just off the left edge, so its upper part shows at the top left, and
-   sweeps down to the bottom. */
+/* The wave starts just off the left edge, so its upper part shows at the top left, sweeps
+   down to the bottom, and trails along the bottom before fading out. */
 .hero-wave {
-position: absolute; left: -40px; bottom: 0; width: 1000px; height: 100%; display: block;
+position: absolute; left: -40px; bottom: 0; width: 1300px; height: 100%; display: block;
 object-fit: cover; object-position: left bottom; opacity: 0.32;
--webkit-mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
-mask-image: linear-gradient(90deg, #000 62%, transparent 100%);
+-webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
+mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
 }
 /* Map size and position: as large as fits with the U.S. markers starting 16px past the hero
    text (the text runs about 520px from the content edge) and the last Vietnam marker ending 16px
@@ -455,7 +455,9 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 :root { --gutter: 24px; }
 .main-nav { display: none; }
 .header-cta { margin-left: auto; }
-.hero-wave { left: 0; width: 100%; height: 100%; opacity: 0.22; }
+.hero-wave { left: 0; width: 130%; height: 100%; opacity: 0.22;
+  -webkit-mask-image: linear-gradient(90deg, #000 47.7%, transparent 76.9%);
+  mask-image: linear-gradient(90deg, #000 47.7%, transparent 76.9%); }
 .hero-worldmap { opacity: 0.46; right: -12%; width: 120%; }
 .hero-worldmap.hero-markers { opacity: 0.65; } /* softer on phones, where the map sits behind the text */
 .hero-inner { min-height: 0; padding-top: 0; padding-bottom: 52px; }
