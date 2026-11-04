@@ -135,6 +135,17 @@
     });
   });
   function dwell(i) { return Math.max(MIN_DWELL, photoSets[i].length * PHOTO); }
+  /* Put a story back on its first photo while it is still hidden, with no crossfade.
+     The story fades in over 600ms but a photo crossfade runs 900ms, so without this the
+     story arrives still showing the last photo from its previous turn. */
+  function resetPhotos(i) {
+    if (!photoSets[i].length) return;
+    slides[i].classList.add("no-photo-fade");
+    photoSets[i].forEach(function (img, j) { img.classList.toggle("is-on", j === 0); });
+    photoDots[i].forEach(function (d, j) { d.classList.toggle("is-on", j === 0); d.setAttribute("aria-current", j === 0 ? "true" : "false"); });
+    void slides[i].offsetWidth; /* apply it now, before transitions are allowed again */
+    slides[i].classList.remove("no-photo-fade");
+  }
   function showPhoto(k) {
     if (k === shownPhoto) return;
     shownPhoto = k;
@@ -172,8 +183,8 @@
   function go(i, byUser) {
     index = (i + slides.length) % slides.length;
     elapsed = 0;
+    resetPhotos(index); shownPhoto = 0;
     render();
-    shownPhoto = -1; showPhoto(0);
     if (byUser) track.setAttribute("aria-live", "polite");
   }
   window.CCStories = { go: function (i) { go(i, true); } };

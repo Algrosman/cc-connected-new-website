@@ -384,6 +384,7 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 .story-photo img:not(:first-of-type) { display: none; } /* without JavaScript, the first photo only */
 .js .story-photo img { display: block; position: absolute; inset: 0; opacity: 0; transition: opacity 900ms var(--ease), transform 7s linear; }
 .js .story-photo img.is-on { opacity: 1; }
+.js .story.no-photo-fade .story-photo img { transition: none; }
 /* Small dots on the photo show (and pick) which photo of the set is showing */
 .photo-dots { display: none; }
 .js .photo-dots { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: flex; gap: 2px; padding: 3px 6px; border-radius: 999px; background: rgba(18, 52, 92, 0.55); }
