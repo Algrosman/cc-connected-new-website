@@ -130,6 +130,11 @@
               <p>Continuing education for clinicians and administrators of all levels, in person or online.</p>
               <a class="arrow-link" href="mailto:ccconnected@ccf.org?subject=Education">Talk to us about education</a>
             </article>
+            <article class="domain" style="--accent: var(--c-sl)">
+              <h3 class="domain-name">Service Lines &amp; Centers of Excellence</h3>
+              <p>Standing up new clinical programs, and taking existing ones to the level your community needs.</p>
+              <a class="arrow-link has-tail" href="mailto:ccconnected@ccf.org?subject=Service%20line%20advisory">Talk to us about <span class="tail">service lines</span></a>
+            </article>
           </div>
         </div>
       </div>
@@ -203,8 +208,9 @@
             </div>
           </div>
 
-          <!-- Priority explorer: the wheel's four domain segments are tabs; the selected one turns to face its panel.
-               Without JavaScript the wheel is hidden and all four panels show. -->
+          <!-- Priority explorer: the wheel's five domain segments are tabs; the selected one turns to face its panel.
+               Without JavaScript the wheel is hidden and all five panels show.
+               Segment geometry is generated, not hand-written: see README, 'Updating content'. -->
           <div class="explorer" id="explorer">
             <div class="wheel-wrap">
               <p class="wheel-hint" aria-hidden="true"><svg class="hint-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5c0 3.6-2.4 6.5-6 6.5h-1c-2.2 0-3.5-1-4.7-2.6L4.6 14.6a1.5 1.5 0 0 1 2.3-1.9L9 15"/></svg>Click an area of the wheel to explore</p>
@@ -215,26 +221,31 @@
                     <linearGradient id="wg-sqpe" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#25964c"/><stop offset="1" stop-color="#16682f"/></linearGradient>
                     <linearGradient id="wg-it" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2ea6e6"/><stop offset="1" stop-color="#0d74b8"/></linearGradient>
                     <linearGradient id="wg-edu" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#4cab5c"/><stop offset="1" stop-color="#2a8340"/></linearGradient>
+                    <linearGradient id="wg-sl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a5f9c"/><stop offset="1" stop-color="#143a66"/></linearGradient>
                     <radialGradient id="wg-glow"><stop offset="0.55" stop-color="#1f9be0" stop-opacity="0.16"/><stop offset="1" stop-color="#1f9be0" stop-opacity="0"/></radialGradient>
                   </defs>
                   <circle cx="170" cy="170" r="170" fill="url(#wg-glow)"/>
                   <circle class="wheel-ring" cx="170" cy="170" r="162"/>
                   <g class="wheel-rot">
-                  <g class="seg" role="tab" id="tab-margins" aria-controls="pri-margins" aria-selected="true" tabindex="0" data-key="margins" data-angle="-45" style="--d: var(--c-fin); --tx: 4.95px; --ty: -4.95px" aria-label="Finance" data-short="Finance" data-title="Financial clarity and planning">
-                    <path fill="url(#wg-fin)" d="M173.84 13.05 A157 157 0 0 1 326.95 166.16 L249.98 168.05 A80 80 0 0 0 171.95 90.02 Z"/>
-                    <text class="seg-label" x="253.79" y="86.21" text-anchor="middle" dominant-baseline="central">Finance</text>
+                  <g class="seg" role="tab" id="tab-margins" aria-controls="pri-margins" aria-selected="true" tabindex="0" data-key="margins" data-angle="-54" style="--d: var(--c-fin); --tx: 4.11px; --ty: -5.66px" aria-label="Finance" data-short="Finance" data-title="Financial clarity and planning">
+                    <path fill="url(#wg-fin)" d="M173.84 13.05 A157 157 0 0 1 318.09 117.85 L245.46 143.43 A80 80 0 0 0 171.95 90.02 Z"/>
+                    <text class="seg-label" x="239.65" y="74.13" text-anchor="middle" dominant-baseline="central">Finance</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-safety" aria-controls="pri-safety" aria-selected="false" tabindex="-1" data-key="safety" data-angle="45" style="--d: var(--c-sqpe); --tx: 4.95px; --ty: 4.95px" aria-label="Safety, Quality, and Patient Experience" data-short="SQPE" data-title="Safer, more reliable care">
-                    <path fill="url(#wg-sqpe)" d="M326.95 173.84 A157 157 0 0 1 173.84 326.95 L171.95 249.98 A80 80 0 0 0 249.98 171.95 Z"/>
-                    <text class="seg-label" x="253.79" y="253.79" text-anchor="middle" dominant-baseline="central">SQPE</text>
+                  <g class="seg" role="tab" id="tab-safety" aria-controls="pri-safety" aria-selected="false" tabindex="-1" data-key="safety" data-angle="18" style="--d: var(--c-sqpe); --tx: 6.66px; --ty: 2.16px" aria-label="Safety, Quality, and Patient Experience" data-short="SQPE" data-title="Safer, more reliable care">
+                    <path fill="url(#wg-sqpe)" d="M320.46 125.15 A157 157 0 0 1 265.36 294.72 L218.59 233.55 A80 80 0 0 0 246.67 147.14 Z"/>
+                    <text class="seg-label" x="282.7" y="206.62" text-anchor="middle" dominant-baseline="central">SQPE</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-data" aria-controls="pri-data" aria-selected="false" tabindex="-1" data-key="data" data-angle="135" style="--d: var(--c-dig); --tx: -4.95px; --ty: 4.95px" aria-label="IT" data-short="IT" data-title="Better use of data and technology">
-                    <path fill="url(#wg-it)" d="M166.16 326.95 A157 157 0 0 1 13.05 173.84 L90.02 171.95 A80 80 0 0 0 168.05 249.98 Z"/>
-                    <text class="seg-label" x="86.21" y="253.79" text-anchor="middle" dominant-baseline="central">IT</text>
+                  <g class="seg" role="tab" id="tab-data" aria-controls="pri-data" aria-selected="false" tabindex="-1" data-key="data" data-angle="90" style="--d: var(--c-dig); --tx: 0px; --ty: 7px" aria-label="IT" data-short="IT" data-title="Better use of data and technology">
+                    <path fill="url(#wg-it)" d="M259.15 299.23 A157 157 0 0 1 80.85 299.23 L124.57 235.85 A80 80 0 0 0 215.43 235.85 Z"/>
+                    <text class="seg-label" x="170" y="288.5" text-anchor="middle" dominant-baseline="central">IT</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-workforce" aria-controls="pri-workforce" aria-selected="false" tabindex="-1" data-key="workforce" data-angle="225" style="--d: var(--c-edu); --tx: -4.95px; --ty: -4.95px" aria-label="Education" data-short="Education" data-title="A more competent workforce">
-                    <path fill="url(#wg-edu)" d="M13.05 166.16 A157 157 0 0 1 166.16 13.05 L168.05 90.02 A80 80 0 0 0 90.02 168.05 Z"/>
-                    <text class="seg-label" x="86.21" y="86.21" text-anchor="middle" dominant-baseline="central">Education</text>
+                  <g class="seg" role="tab" id="tab-workforce" aria-controls="pri-workforce" aria-selected="false" tabindex="-1" data-key="workforce" data-angle="162" style="--d: var(--c-edu); --tx: -6.66px; --ty: 2.16px" aria-label="Education" data-short="Education" data-title="A more competent workforce">
+                    <path fill="url(#wg-edu)" d="M74.64 294.72 A157 157 0 0 1 19.54 125.15 L93.33 147.14 A80 80 0 0 0 121.41 233.55 Z"/>
+                    <text class="seg-label" x="57.3" y="206.62" text-anchor="middle" dominant-baseline="central">Education</text>
+                  </g>
+                  <g class="seg" role="tab" id="tab-servicelines" aria-controls="pri-servicelines" aria-selected="false" tabindex="-1" data-key="servicelines" data-angle="234" style="--d: var(--c-sl); --tx: -4.11px; --ty: -5.66px" aria-label="Service Lines and Centers of Excellence" data-short="Service lines" data-title="Stronger clinical programs">
+                    <path fill="url(#wg-sl)" d="M21.91 117.85 A157 157 0 0 1 166.16 13.05 L168.05 90.02 A80 80 0 0 0 94.54 143.43 Z"/>
+                    <text class="seg-label" x="100.35" y="74.13" text-anchor="middle" dominant-baseline="central"><tspan x="100.35" dy="-0.58em">Service</tspan><tspan x="100.35" dy="1.16em">lines</tspan></text>
                   </g>
                   </g>
                   <circle class="wheel-hub" cx="170" cy="170" r="71"/>
@@ -317,6 +328,25 @@
                     <li><span class="proof-who">Vinmec Times City</span>Two-week neurology observerships at Cleveland Clinic's main campus for Vinmec physicians, building MRI analysis skills to bring back to their practice in Vietnam.</li>
                     <li><span class="proof-who">Vinmec Central Park</span>An epilepsy seminar with Cleveland Clinic was attended by over 200 clinicians in 2025.</li>
                     <li><span class="proof-who">All Cleveland Clinic Connected members</span>Physicians from different member hospitals received in-depth leadership training from Cleveland Clinic Education Institute and SQPE leaders over three days at Main Campus. <a class="proof-link" href="#partners" data-story="1">See the story</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+              <section class="pri" id="pri-servicelines" role="tabpanel" aria-labelledby="tab-servicelines" style="--d: var(--c-sl)">
+                <p class="pri-domain">Service Lines &amp; Centers of Excellence</p>
+                <h4 class="pri-title">Stronger clinical programs</h4>
+                <div class="pri-cols">
+                  <div>
+                    <p class="pri-label">How we help</p>
+                    <ul class="xp-list pri-help" style="--accent: var(--c-sl)">
+                    <li>Assessing where a service line stands today and what level it should reach, then designing the program, its governance, its care pathways and its team, through to opening and to accreditation or center of excellence designation</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="pri-label">From our work</p>
+                    <ul class="pri-proof">
+                    <li><span class="proof-who">Barton Health</span>A current state assessment of its cancer service line, with design recommendations to better serve the specific needs of a rural population.</li>
+                    <li><span class="proof-who">Vinmec Central Park</span>Assessment against international epilepsy center standards, then a development plan, case reviews and physician observerships in Cleveland.</li>
                     </ul>
                   </div>
                 </div>
