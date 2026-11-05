@@ -1,6 +1,6 @@
 # Cleveland Clinic Connected: public website
 
-The public, external-facing Cleveland Clinic Connected advisory website. It explains the program at a high level: Cleveland Clinic's advisory expertise in four domains (Finance; Safety, Quality, and Patient Experience (SQPE); Digital Tools & Analytics; Education), programs for new hospitals (the All-in-One New Hospital Package) and for existing hospitals, highlights of work with member hospitals, membership, the member network, FAQs and contact.
+The public, external-facing Cleveland Clinic Connected advisory website. It explains the program at a high level: Cleveland Clinic's advisory expertise in five domains (Finance; Safety, Quality, and Patient Experience (SQPE); Digital Tools & Analytics; Education; Service Lines & Centers of Excellence), programs for new hospitals (the All-in-One New Hospital Package) and for existing hospitals, highlights of work with member hospitals, membership, the member network, FAQs and contact.
 
 The detailed catalog, product navigator, brochures and advisory service package request live in a separate, private site (the advisory solution builder). Its link is shared only with clients who have contacted the team; nothing on this site links to it.
 
@@ -29,8 +29,10 @@ Then open http://localhost:8000.
 All text is in `index.html`:
 
 - **Advisory expertise:** one card per domain, each with "For new hospitals" and "For existing hospitals" points. Keep these at a high level; solution detail belongs in the private builder.
-- **Programs:** the All-in-One New Hospital Package roadmap (three phases on one line ending on opening day; each item carries its domain tag) and, for existing hospitals, a priority wheel: four priorities, each with how we help and examples "from our work" that open the matching partner story. Keep the examples to what partners or Cleveland Clinic have announced publicly.
+- **Programs:** the All-in-One New Hospital Package roadmap (three phases on one line ending on opening day; each item carries its domain tag; the package bundles the original four domains) and, for existing hospitals, a priority wheel: one priority per domain, each with how we help and examples "from our work" that open the matching partner story. Keep the examples to what partners or Cleveland Clinic have announced publicly.
 - **Partner highlights:** one story per member in a carousel that rotates every 9 seconds while on screen (it stops on keyboard focus, with the pause button and for visitors who prefer reduced motion). Each story is drawn from a public announcement and linked to it. Add only what has been announced publicly, and no individual people's names. Photos go in `assets/img/highlights/` (3:2, at least 1200 pixels wide) and should show people at the event or engagement, with Marketing's approval. The "Photo to come" notes show only while `showPrototypeNotice` is on.
+  The wheel's segment geometry (arc paths, label positions, bisector angles and offsets) is generated for the
+  number of segments rather than hand-written, so adding or removing a domain means regenerating all of them.
 - **Member network:** one entry per member hospital with a photo in `assets/img/members/` (640 by 425 pixels).
 
 ## Before going live

@@ -26,6 +26,8 @@ headlines, colored section labels, cards with an accent edge, a roadmap and a st
 --c-sqpe: #1b7638;
 --c-dig: #3a8fd0;
 --c-edu: #3a9150;
+--c-sl: #1b477b;
+--c-rec: #0f7b8a;
 
 --sans: "Roboto", "Helvetica Neue", Arial, sans-serif;
 --radius: 3px;
@@ -225,8 +227,9 @@ transition: transform 1200ms var(--ease), opacity 1200ms var(--ease);
 .member-place { font-size: 14px; color: var(--slate); margin-top: 3px; }
 
 /* ---------- Expertise ---------- */
-/* The four domains, once each: open columns with a colored top rule */
-.domains { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
+/* The domains, once each: open columns with a colored top rule. Three across, so five cards sit
+   3 + 2 and a sixth completes the second row. Falls to two columns and then one on smaller screens. */
+.domains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; row-gap: 40px; margin-top: 48px; }
 .domain { display: flex; flex-direction: column; border-top: 5px solid var(--accent); padding-top: 22px; }
 .domain-name { font-size: 22px; font-weight: 400; line-height: 1.25; color: var(--ink); }
 .domain p { color: var(--slate); font-size: 15.5px; line-height: 1.55; margin-top: 10px; }
@@ -236,6 +239,21 @@ transition: transform 1200ms var(--ease), opacity 1200ms var(--ease);
 @supports (grid-template-rows: subgrid) {
 .domain { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
 .domain .arrow-link { margin-top: 0; align-self: start; justify-self: start; }
+/* The longest label does not fit on one line beside its arrow. Lay the card links out as text so
+   the arrow follows the last word rather than being pushed to the far edge by the flex container,
+   and on a link with a .tail the arrow hangs off that tail, which never breaks: the line then
+   wraps before the tail and the arrow stays beside it. */
+.domain .arrow-link { display: block; }
+.domain .arrow-link::after { display: inline-block; margin-left: 6px; vertical-align: -1px; }
+.domain .arrow-link.has-tail::after { content: none; }
+.domain .arrow-link .tail { white-space: nowrap; }
+.domain .arrow-link .tail::after {
+content: ""; display: inline-block; width: 14px; height: 10px; margin-left: 6px; vertical-align: -1px;
+background: currentColor; transition: transform 180ms var(--ease);
+-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 10'%3E%3Cpath d='M0 5h12M8 1l4 4-4 4' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center / contain no-repeat;
+mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 10'%3E%3Cpath d='M0 5h12M8 1l4 4-4 4' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.domain .arrow-link:hover .tail::after { transform: translateX(4px); }
 }
 .section-lede a { color: var(--blue-dark); font-weight: 500; }
 .xp-list { list-style: none; padding: 2px 0 2px 14px; margin-top: 4px; display: grid; gap: 10px; border-left: 2px solid var(--accent, var(--rule)); }
