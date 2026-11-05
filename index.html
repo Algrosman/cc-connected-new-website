@@ -135,6 +135,11 @@
               <p>Standing up new clinical programs, and taking existing ones to the level your community needs.</p>
               <a class="arrow-link has-tail" href="mailto:ccconnected@ccf.org?subject=Service%20line%20advisory">Talk to us about <span class="tail">service lines</span></a>
             </article>
+            <article class="domain" style="--accent: var(--c-rec)">
+              <h3 class="domain-name">Physician &amp; Executive Recruitment</h3>
+              <p>Building the team and keeping it: organization design, sourcing, selection, credentialing and retention.</p>
+              <a class="arrow-link has-tail" href="mailto:ccconnected@ccf.org?subject=Recruitment%20advisory">Talk to us about <span class="tail">recruitment</span></a>
+            </article>
           </div>
         </div>
       </div>
@@ -208,8 +213,8 @@
             </div>
           </div>
 
-          <!-- Priority explorer: the wheel's five domain segments are tabs; the selected one turns to face its panel.
-               Without JavaScript the wheel is hidden and all five panels show.
+          <!-- Priority explorer: the wheel's six domain segments are tabs; the selected one turns to face its panel.
+               Without JavaScript the wheel is hidden and all six panels show.
                Segment geometry is generated, not hand-written: see README, 'Updating content'. -->
           <div class="explorer" id="explorer">
             <div class="wheel-wrap">
@@ -222,30 +227,35 @@
                     <linearGradient id="wg-it" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2ea6e6"/><stop offset="1" stop-color="#0d74b8"/></linearGradient>
                     <linearGradient id="wg-edu" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#4cab5c"/><stop offset="1" stop-color="#2a8340"/></linearGradient>
                     <linearGradient id="wg-sl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a5f9c"/><stop offset="1" stop-color="#143a66"/></linearGradient>
+                    <linearGradient id="wg-rec" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1696a6"/><stop offset="1" stop-color="#0b616e"/></linearGradient>
                     <radialGradient id="wg-glow"><stop offset="0.55" stop-color="#1f9be0" stop-opacity="0.16"/><stop offset="1" stop-color="#1f9be0" stop-opacity="0"/></radialGradient>
                   </defs>
                   <circle cx="170" cy="170" r="170" fill="url(#wg-glow)"/>
                   <circle class="wheel-ring" cx="170" cy="170" r="162"/>
                   <g class="wheel-rot">
-                  <g class="seg" role="tab" id="tab-margins" aria-controls="pri-margins" aria-selected="true" tabindex="0" data-key="margins" data-angle="-54" style="--d: var(--c-fin); --tx: 4.11px; --ty: -5.66px" aria-label="Finance" data-short="Finance" data-title="Financial clarity and planning">
-                    <path fill="url(#wg-fin)" d="M173.84 13.05 A157 157 0 0 1 318.09 117.85 L245.46 143.43 A80 80 0 0 0 171.95 90.02 Z"/>
-                    <text class="seg-label" x="239.65" y="74.13" text-anchor="middle" dominant-baseline="central">Finance</text>
+                  <g class="seg" role="tab" id="tab-margins" aria-controls="pri-margins" aria-selected="true" tabindex="0" data-key="margins" data-angle="-60" style="--d: var(--c-fin); --tx: 3.5px; --ty: -6.06px" aria-label="Finance" data-short="Finance" data-title="Financial clarity and planning">
+                    <path fill="url(#wg-fin)" d="M173.84 13.05 A157 157 0 0 1 304.01 88.2 L238.28 128.32 A80 80 0 0 0 171.95 90.02 Z"/>
+                    <text class="seg-label" x="229.25" y="67.38" text-anchor="middle" dominant-baseline="central">Finance</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-safety" aria-controls="pri-safety" aria-selected="false" tabindex="-1" data-key="safety" data-angle="18" style="--d: var(--c-sqpe); --tx: 6.66px; --ty: 2.16px" aria-label="Safety, Quality, and Patient Experience" data-short="SQPE" data-title="Safer, more reliable care">
-                    <path fill="url(#wg-sqpe)" d="M320.46 125.15 A157 157 0 0 1 265.36 294.72 L218.59 233.55 A80 80 0 0 0 246.67 147.14 Z"/>
-                    <text class="seg-label" x="282.7" y="206.62" text-anchor="middle" dominant-baseline="central">SQPE</text>
+                  <g class="seg" role="tab" id="tab-safety" aria-controls="pri-safety" aria-selected="false" tabindex="-1" data-key="safety" data-angle="0" style="--d: var(--c-sqpe); --tx: 7px; --ty: 0px" aria-label="Safety, Quality, and Patient Experience" data-short="SQPE" data-title="Safer, more reliable care">
+                    <path fill="url(#wg-sqpe)" d="M307.84 94.85 A157 157 0 0 1 307.84 245.15 L240.24 208.3 A80 80 0 0 0 240.24 131.7 Z"/>
+                    <text class="seg-label" x="288.5" y="170" text-anchor="middle" dominant-baseline="central">SQPE</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-data" aria-controls="pri-data" aria-selected="false" tabindex="-1" data-key="data" data-angle="90" style="--d: var(--c-dig); --tx: 0px; --ty: 7px" aria-label="IT" data-short="IT" data-title="Better use of data and technology">
-                    <path fill="url(#wg-it)" d="M259.15 299.23 A157 157 0 0 1 80.85 299.23 L124.57 235.85 A80 80 0 0 0 215.43 235.85 Z"/>
-                    <text class="seg-label" x="170" y="288.5" text-anchor="middle" dominant-baseline="central">IT</text>
+                  <g class="seg" role="tab" id="tab-data" aria-controls="pri-data" aria-selected="false" tabindex="-1" data-key="data" data-angle="60" style="--d: var(--c-dig); --tx: 3.5px; --ty: 6.06px" aria-label="IT" data-short="IT" data-title="Better use of data and technology">
+                    <path fill="url(#wg-it)" d="M304.01 251.8 A157 157 0 0 1 173.84 326.95 L171.95 249.98 A80 80 0 0 0 238.28 211.68 Z"/>
+                    <text class="seg-label" x="229.25" y="272.62" text-anchor="middle" dominant-baseline="central">IT</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-workforce" aria-controls="pri-workforce" aria-selected="false" tabindex="-1" data-key="workforce" data-angle="162" style="--d: var(--c-edu); --tx: -6.66px; --ty: 2.16px" aria-label="Education" data-short="Education" data-title="A more competent workforce">
-                    <path fill="url(#wg-edu)" d="M74.64 294.72 A157 157 0 0 1 19.54 125.15 L93.33 147.14 A80 80 0 0 0 121.41 233.55 Z"/>
-                    <text class="seg-label" x="57.3" y="206.62" text-anchor="middle" dominant-baseline="central">Education</text>
+                  <g class="seg" role="tab" id="tab-workforce" aria-controls="pri-workforce" aria-selected="false" tabindex="-1" data-key="workforce" data-angle="120" style="--d: var(--c-edu); --tx: -3.5px; --ty: 6.06px" aria-label="Education" data-short="Education" data-title="A more competent workforce">
+                    <path fill="url(#wg-edu)" d="M166.16 326.95 A157 157 0 0 1 35.99 251.8 L101.72 211.68 A80 80 0 0 0 168.05 249.98 Z"/>
+                    <text class="seg-label" x="110.75" y="272.62" text-anchor="middle" dominant-baseline="central">Education</text>
                   </g>
-                  <g class="seg" role="tab" id="tab-servicelines" aria-controls="pri-servicelines" aria-selected="false" tabindex="-1" data-key="servicelines" data-angle="234" style="--d: var(--c-sl); --tx: -4.11px; --ty: -5.66px" aria-label="Service Lines and Centers of Excellence" data-short="Service lines" data-title="Stronger clinical programs">
-                    <path fill="url(#wg-sl)" d="M21.91 117.85 A157 157 0 0 1 166.16 13.05 L168.05 90.02 A80 80 0 0 0 94.54 143.43 Z"/>
-                    <text class="seg-label" x="100.35" y="74.13" text-anchor="middle" dominant-baseline="central"><tspan x="100.35" dy="-0.58em">Service</tspan><tspan x="100.35" dy="1.16em">lines</tspan></text>
+                  <g class="seg" role="tab" id="tab-servicelines" aria-controls="pri-servicelines" aria-selected="false" tabindex="-1" data-key="servicelines" data-angle="180" style="--d: var(--c-sl); --tx: -7px; --ty: 0px" aria-label="Service Lines and Centers of Excellence" data-short="Service lines" data-title="Stronger clinical programs">
+                    <path fill="url(#wg-sl)" d="M32.16 245.15 A157 157 0 0 1 32.16 94.85 L99.76 131.7 A80 80 0 0 0 99.76 208.3 Z"/>
+                    <text class="seg-label" x="51.5" y="170" text-anchor="middle" dominant-baseline="central"><tspan x="51.5" dy="-0.58em">Service</tspan><tspan x="51.5" dy="1.16em">lines</tspan></text>
+                  </g>
+                  <g class="seg" role="tab" id="tab-recruitment" aria-controls="pri-recruitment" aria-selected="false" tabindex="-1" data-key="recruitment" data-angle="240" style="--d: var(--c-rec); --tx: -3.5px; --ty: -6.06px" aria-label="Physician and Executive Recruitment" data-short="Recruitment" data-title="The right people, and keeping them">
+                    <path fill="url(#wg-rec)" d="M35.99 88.2 A157 157 0 0 1 166.16 13.05 L168.05 90.02 A80 80 0 0 0 101.72 128.32 Z"/>
+                    <text class="seg-label" x="110.75" y="67.38" text-anchor="middle" dominant-baseline="central">Talent</text>
                   </g>
                   </g>
                   <circle class="wheel-hub" cx="170" cy="170" r="71"/>
@@ -347,6 +357,26 @@
                     <ul class="pri-proof">
                     <li><span class="proof-who">Barton Health</span>A current state assessment of its cancer service line, with design recommendations to better serve the specific needs of a rural population.</li>
                     <li><span class="proof-who">Vinmec Central Park</span>Assessment against international epilepsy center standards, then a development plan, case reviews and physician observerships in Cleveland.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+              <section class="pri" id="pri-recruitment" role="tabpanel" aria-labelledby="tab-recruitment" style="--d: var(--c-rec)">
+                <p class="pri-domain">Physician &amp; Executive Recruitment</p>
+                <h4 class="pri-title">The right people, and keeping them</h4>
+                <div class="pri-cols">
+                  <div>
+                    <p class="pri-label">How we help</p>
+                    <ul class="xp-list pri-help" style="--accent: var(--c-rec)">
+                    <li>Designing the structure and the order you hire in, defining what good looks like in each role, then sourcing, selecting, credentialing and keeping the people you appoint</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="pri-label">From our work</p>
+                    <ul class="pri-proof">
+                    <li><span class="proof-who">Barton Health</span>Sourcing across neurology, oncology and cardiology, with job postings, advertising and outreach to training programs.</li>
+                    <li><span class="proof-who">Central Asian University Hospital</span>Designing the organization structure, executive success profiles and hiring sequence for a hospital in development.</li>
+                    <li><span class="proof-who">Vinmec Can Gio International General Hospital</span>Shaping the medical staff model for a new hospital: the mix of local and international physicians, and credentialing lead times.</li>
                     </ul>
                   </div>
                 </div>
