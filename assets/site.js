@@ -21,60 +21,62 @@
   });
   var y = $("#year"); if (y) y.textContent = new Date().getFullYear();
 
-  /* ---------- Advisory services, one card at a time on phones ---------- */
-  var domTrack = $(".domains"), domCtl = $(".domains-controls");
-  if (domTrack && domCtl) {
-    var domCards = $all(".domain", domTrack);
-    var domNow = $("#domainsNow"), domAll = $("#domainsAll");
-    var domPrev = $(".domains-prev"), domNext = $(".domains-next");
+  /* ---------- Carousels on phones: advisory services, and the hospital roadmap ----------
+     Both are a scroll-snap row that the buttons step through. The step is measured from the
+     cards' own positions, so the gap cannot drift it out of alignment. */
+  function phoneCarousel(trackSel, ctlSel, cardSel, label) {
+    var track = $(trackSel), ctl = $(ctlSel);
+    if (!track || !ctl) return;
+    var cards = $all(cardSel, track);
+    if (cards.length < 2) return;
+    var now = $(".js-now", ctl), all = $(".js-all", ctl);
+    var prev = $(".js-prev", ctl), next = $(".js-next", ctl);
     var phone = window.matchMedia("(max-width: 640px)");
-    /* Measured rather than assumed, so the gap and any rounding come out in the wash. */
-    var domStep = function () {
-      if (domCards.length > 1) return domCards[1].offsetLeft - domCards[0].offsetLeft;
-      return domTrack.clientWidth;
+    var step = function () { return cards[1].offsetLeft - cards[0].offsetLeft; };
+    var index = function () {
+      var s = step();
+      var i = s > 0 ? Math.round(track.scrollLeft / s) : 0;
+      return Math.max(0, Math.min(cards.length - 1, i));
     };
-    var domIndex = function () {
-      var s = domStep();
-      var i = s > 0 ? Math.round(domTrack.scrollLeft / s) : 0;
-      return Math.max(0, Math.min(domCards.length - 1, i));
+    var sync = function () {
+      var i = index();
+      if (now) now.textContent = String(i + 1);
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i >= cards.length - 1;
     };
-    var domSync = function () {
-      var i = domIndex();
-      if (domNow) domNow.textContent = String(i + 1);
-      if (domPrev) domPrev.disabled = i === 0;
-      if (domNext) domNext.disabled = i >= domCards.length - 1;
+    var go = function (dir) {
+      var i = Math.max(0, Math.min(cards.length - 1, index() + dir));
+      track.scrollTo({ left: i * step(), behavior: reduceMotion ? "auto" : "smooth" });
     };
-    var domGo = function (dir) {
-      var i = Math.max(0, Math.min(domCards.length - 1, domIndex() + dir));
-      domTrack.scrollTo({ left: i * domStep(), behavior: reduceMotion ? "auto" : "smooth" });
-    };
-    if (domPrev) domPrev.addEventListener("click", function () { domGo(-1); });
-    if (domNext) domNext.addEventListener("click", function () { domGo(1); });
-    var domTick;
-    domTrack.addEventListener("scroll", function () {
-      window.clearTimeout(domTick);
-      domTick = window.setTimeout(domSync, 90);
+    if (prev) prev.addEventListener("click", function () { go(-1); });
+    if (next) next.addEventListener("click", function () { go(1); });
+    var tick;
+    track.addEventListener("scroll", function () {
+      window.clearTimeout(tick);
+      tick = window.setTimeout(sync, 90);
     }, { passive: true });
-    var domApply = function () {
+    var apply = function () {
       var on = phone.matches;
-      domCtl.hidden = !on;
+      ctl.hidden = !on;
       if (on) {
-        domTrack.setAttribute("tabindex", "0");
-        domTrack.setAttribute("role", "group");
-        domTrack.setAttribute("aria-label", "Advisory services, " + domCards.length + " cards");
-        if (domAll) domAll.textContent = String(domCards.length);
-        domSync();
+        track.setAttribute("tabindex", "0");
+        track.setAttribute("role", "group");
+        track.setAttribute("aria-label", label + ", " + cards.length + " items");
+        if (all) all.textContent = String(cards.length);
+        sync();
       } else {
-        domTrack.removeAttribute("tabindex");
-        domTrack.removeAttribute("role");
-        domTrack.removeAttribute("aria-label");
-        domTrack.scrollLeft = 0;
+        track.removeAttribute("tabindex");
+        track.removeAttribute("role");
+        track.removeAttribute("aria-label");
+        track.scrollLeft = 0;
       }
     };
-    if (phone.addEventListener) phone.addEventListener("change", domApply);
-    else if (phone.addListener) phone.addListener(domApply);
-    domApply();
+    if (phone.addEventListener) phone.addEventListener("change", apply);
+    else if (phone.addListener) phone.addListener(apply);
+    apply();
   }
+  phoneCarousel(".domains", ".domains-controls", ".domain", "Advisory services");
+  phoneCarousel(".roadmap", ".rm-controls", ".rm-phase, .rm-flag", "Hospital package stages");
 
   /* ---------- Menu on tablets and phones ---------- */
   var menuBtn = $(".menu-btn"), menu = $("#mobileMenu");

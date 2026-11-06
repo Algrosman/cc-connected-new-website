@@ -631,3 +631,25 @@ body { font-size: 16px; }
 .domains-controls .round-btn:disabled:hover { border-color: #b9c5d2; background: var(--white); }
 .domains:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 }
+
+/* The new-hospital roadmap on phones: as a vertical timeline the four stages ran to roughly
+   900px of scrolling on their own. One stage at a time instead, stepped with the buttons or
+   swiped. The connector rail is dropped here because the stages no longer sit end to end; the
+   numbered node and the count carry the sequence. */
+.rm-controls { display: none; }
+@media (max-width: 640px) {
+.roadmap { display: flex; margin-top: 26px; gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; }
+.roadmap::-webkit-scrollbar { display: none; }
+.rm-phase, .rm-flag { flex: 0 0 100%; scroll-snap-align: start; padding-bottom: 0; }
+.rm-phase::before, .rm-phase::after { content: none; }
+.rm-flag { align-self: start; }
+.rm-controls:not([hidden]) { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
+.rm-count { font-size: 14.5px; color: rgba(255, 255, 255, 0.82); font-variant-numeric: tabular-nums; margin-right: auto; }
+.rm-controls .round-btn { border-color: rgba(255, 255, 255, 0.45); background: transparent; color: var(--white); }
+.rm-controls .round-btn:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.12); }
+.rm-controls .round-btn:disabled { opacity: 0.35; cursor: default; }
+.rm-controls .round-btn:disabled:hover { border-color: rgba(255, 255, 255, 0.45); background: transparent; }
+.roadmap:focus-visible { outline: 2px solid var(--blue-on-navy); outline-offset: 4px; }
+}

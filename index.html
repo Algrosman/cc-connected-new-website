@@ -145,11 +145,11 @@
           <!-- Phones only, and only with JavaScript: the six cards become one card at a time.
                Without JavaScript the row is still swipeable, it just has no buttons. -->
           <div class="domains-controls" hidden>
-            <p class="domains-count" aria-hidden="true"><span id="domainsNow">1</span> / <span id="domainsAll">6</span></p>
-            <button type="button" class="round-btn domains-prev" aria-label="Previous advisory service">
+            <p class="domains-count" aria-hidden="true"><span class="js-now">1</span> / <span class="js-all">6</span></p>
+            <button type="button" class="round-btn js-prev" aria-label="Previous advisory service">
               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <button type="button" class="round-btn domains-next" aria-label="Next advisory service">
+            <button type="button" class="round-btn js-next" aria-label="Next advisory service">
               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -210,6 +210,17 @@
               <span class="rm-flag-name">Open</span>
               <span class="rm-flag-note">All areas ready</span>
             </div>
+          </div>
+
+          <!-- Phones only, and only with JavaScript: one stage at a time. -->
+          <div class="rm-controls" hidden>
+            <p class="rm-count" aria-hidden="true"><span class="js-now">1</span> / <span class="js-all">4</span></p>
+            <button type="button" class="round-btn js-prev" aria-label="Previous stage">
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="round-btn js-next" aria-label="Next stage">
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
         </article>
 
