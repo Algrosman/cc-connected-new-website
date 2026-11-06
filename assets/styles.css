@@ -128,14 +128,17 @@ object-fit: cover; object-position: left bottom; opacity: 0.32;
 -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
 mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
 }
-/* Map size and position: as large as fits with the U.S. markers starting 16px past the hero
-   text (the text runs about 520px from the content edge) and the last Vietnam marker ending 16px
-   from the right edge. In the image, the markers span 27.7% to 89.2% of its width.
+/* Map size and position: as large as fits with the drawn map starting clear of the hero text
+   and the last Vietnam marker ending 16px from the right edge. In the image the markers span
+   27.7% to 89.2% of its width, but the drawn land starts earlier, at 22%, so the map is sized
+   off that 22% edge rather than the first marker: sizing off the marker let the Pacific dots
+   run under the hero copy. 0.6716 is 89.2% - 22%, the span from the first ink to the last
+   marker. 620px reserves the copy column (572px), a 32px gap and the 16px right margin.
    The image has a transparent background, so it needs no edge fades. */
 .hero-worldmap {
---mapw: clamp(55%, calc((100% - 584px - max(0px, 50% - 600px)) / 0.615), 1800px);
+--mapw: clamp(380px, calc((100% - max(0px, 50% - 600px) - 620px) / 0.6716), 2101px);
 position: absolute; top: 50%; right: calc(16px - 0.108 * var(--mapw)); transform: translateY(-50%);
-width: var(--mapw); height: auto; opacity: 0.72; display: block;
+width: var(--mapw); height: auto; opacity: 0.95; display: block;
 }
 /* The member markers are a separate layer over the map, at full strength */
 .hero-worldmap.hero-markers { opacity: 1; }
@@ -456,7 +459,9 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 .footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding-top: 10px; }
 .footer-cols h3 { font-size: 20px; font-weight: 300; color: var(--white); margin-bottom: 14px; }
 .footer-cols ul { list-style: none; padding: 0; display: grid; gap: 10px; }
-.footer-cols a { color: var(--slate-on-navy); text-decoration: none; }
+/* The contact address is one unbroken word and the columns get narrow between about 900px and
+   1100px, where it used to run past the last column and be clipped by the section. */
+.footer-cols a { color: var(--slate-on-navy); text-decoration: none; overflow-wrap: anywhere; }
 .footer-cols a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
 .footer-base { border-top: 1px solid rgba(255, 255, 255, 0.16); padding: 20px 0 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; font-size: 13.5px; }
 .footer-name { color: var(--white); font-weight: 500; }
@@ -548,4 +553,30 @@ body { font-size: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
 *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; }
+}
+
+/* Tablets and phones: there is no room beside the hero copy at these widths, so instead of
+   washing the map out behind the text, where the markers landed on top of the headline and the
+   lede, it gets a band of its own under the copy at close to full strength. The map's aspect
+   ratio is 2.8088, so a map drawn at W% of the viewport needs a band W / 2.8088 percent of the
+   viewport width tall, which is what the padding below the copy reserves. */
+@media (min-width: 641px) and (max-width: 900px) {
+.hero-worldmap { width: 112%; max-width: none; right: -6%; top: auto; bottom: 0; transform: none; opacity: 0.95; }
+.hero-worldmap.hero-markers { opacity: 1; }
+.hero-inner { padding-bottom: calc(39.9vw + 24px); }
+}
+/* Phones get a wider draw, 150%, so the markers stay big enough to read. The 14% bleed is what
+   keeps every marker on screen at that size: the markers span 27.7% to 89.2% of the image, so
+   the last one lands 1 + 0.14 - 0.108 x 1.5 = 97.8% of the way across, just inside the right
+   edge, and the first lands at 5.6%, just inside the left. */
+@media (max-width: 640px) {
+.hero-worldmap { width: 150%; max-width: none; right: -14%; top: auto; bottom: 0; transform: none; opacity: 0.95; }
+.hero-worldmap.hero-markers { opacity: 1; }
+.hero-inner { padding-bottom: calc(53.4vw + 20px); }
+}
+
+/* Between about 900px and 1080px the footer's third column is narrower than the contact
+   address, so the three columns become two and the address keeps its own line. */
+@media (min-width: 901px) and (max-width: 1080px) {
+.footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
 }
