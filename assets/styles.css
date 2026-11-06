@@ -128,14 +128,25 @@ object-fit: cover; object-position: left bottom; opacity: 0.32;
 -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
 mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
 }
-/* Map size and position: as large as fits with the U.S. markers starting 16px past the hero
-   text (the text runs about 520px from the content edge) and the last Vietnam marker ending 16px
-   from the right edge. In the image, the markers span 27.7% to 89.2% of its width.
-   The image has a transparent background, so it needs no edge fades. */
+/* Map size and position: as large as fits with the drawn map starting clear of the hero text
+   and the last Vietnam marker ending 56px from the right edge. In the image the markers span
+   27.7% to 89.2% of its width, but the drawn land starts earlier, at 21.8%, so the map is
+   sized off that 21.8% edge rather than the first marker: sizing off the marker let the
+   Pacific dots run under the hero copy. 0.6744 is 89.2% - 21.8%, the span from the first ink
+   to the last marker. 660px reserves the copy column (572px), a 32px gap and the 56px right
+   margin. That margin used to be 16px, which left no room between the last pin and the edge
+   of the hero for the map to fade out in, so the dots were cut off on a hard vertical line.
+   All four edges now fade, and every fade band clears the pins: they sit between 26% and 74%
+   of the image's height, start at 27.7% of its width and end at 89.2%. */
 .hero-worldmap {
---mapw: clamp(55%, calc((100% - 584px - max(0px, 50% - 600px)) / 0.615), 1800px);
-position: absolute; top: 50%; right: calc(16px - 0.108 * var(--mapw)); transform: translateY(-50%);
-width: var(--mapw); height: auto; opacity: 0.72; display: block;
+--mapw: clamp(380px, calc((100% - max(0px, 50% - 600px) - 660px) / 0.6744), 2101px);
+position: absolute; top: 50%; right: calc(56px - 0.108 * var(--mapw)); transform: translateY(-50%);
+width: var(--mapw); height: auto; opacity: 0.95; display: block;
+-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%),
+                    linear-gradient(90deg, transparent 0, #000 24%, #000 90.5%, transparent 95%);
+mask-image: linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%),
+            linear-gradient(90deg, transparent 0, #000 24%, #000 90.5%, transparent 95%);
+-webkit-mask-composite: source-in; mask-composite: intersect;
 }
 /* The member markers are a separate layer over the map, at full strength */
 .hero-worldmap.hero-markers { opacity: 1; }
@@ -456,7 +467,9 @@ transform-box: fill-box; transform-origin: center; transform: rotate(var(--count
 .footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding-top: 10px; }
 .footer-cols h3 { font-size: 20px; font-weight: 300; color: var(--white); margin-bottom: 14px; }
 .footer-cols ul { list-style: none; padding: 0; display: grid; gap: 10px; }
-.footer-cols a { color: var(--slate-on-navy); text-decoration: none; }
+/* The contact address is one unbroken word and the columns get narrow between about 900px and
+   1100px, where it used to run past the last column and be clipped by the section. */
+.footer-cols a { color: var(--slate-on-navy); text-decoration: none; overflow-wrap: anywhere; }
 .footer-cols a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
 .footer-base { border-top: 1px solid rgba(255, 255, 255, 0.16); padding: 20px 0 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; font-size: 13.5px; }
 .footer-name { color: var(--white); font-weight: 500; }
@@ -548,4 +561,133 @@ body { font-size: 16px; }
 
 @media (prefers-reduced-motion: reduce) {
 *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; }
+}
+
+/* Tablets and phones: there is no room beside the hero copy at these widths, so instead of
+   washing the map out behind the text, where the markers landed on top of the headline and the
+   lede, it gets a band of its own under the copy at close to full strength. The map's aspect
+   ratio is 2.8088, so a map drawn at W% of the viewport needs a band W / 2.8088 percent of the
+   viewport width tall, which is what the padding below the copy reserves. */
+@media (min-width: 641px) and (max-width: 900px) {
+.hero-worldmap { width: 112%; max-width: none; right: -6%; top: auto; bottom: 0; transform: none; opacity: 0.95;
+  /* The band is a crop of a bigger drawing, so its top and its right edge used to stop dead.
+     Two masks, intersected: the first softens the top, the second the right edge. Both stay
+     clear of the pins, which sit below 26% of the height and end at 89.2% of the width. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%),
+                      linear-gradient(90deg, #000 92%, transparent 99%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%),
+              linear-gradient(90deg, #000 92%, transparent 99%);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+.hero-worldmap.hero-markers { opacity: 1; }
+.hero-inner { padding-bottom: calc(39.9vw + 24px); }
+/* The breadcrumbs are hidden at these widths, and they were what held the headline off the
+   header, so the copy sets its own breathing room instead of the 8px it had. */
+.hero-copy { padding-top: 52px; }
+}
+/* Phones get a wider draw, 150%, so the markers stay big enough to read. The 14% bleed is what
+   keeps every marker on screen at that size: the markers span 27.7% to 89.2% of the image, so
+   the last one lands 1 + 0.14 - 0.108 x 1.5 = 97.8% of the way across, just inside the right
+   edge, and the first lands at 5.6%, just inside the left. */
+@media (max-width: 640px) {
+.hero-worldmap { width: 150%; max-width: none; right: -14%; top: auto; bottom: 0; transform: none; opacity: 0.95;
+  /* Top fade only here. The marker span fills the screen almost exactly at this size, with the
+     last pin 8px from the right edge, so there is no room for a side fade that would not dim it. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 88%, transparent 100%); }
+.hero-worldmap.hero-markers { opacity: 1; }
+.hero-inner { padding-bottom: calc(53.4vw + 20px); }
+.hero-copy { padding-top: 36px; }
+}
+
+/* Between about 900px and 1080px the footer's third column is narrower than the contact
+   address, so the three columns become two and the address keeps its own line. */
+@media (min-width: 901px) and (max-width: 1080px) {
+.footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+}
+
+/* The label held a 230px column of its own while the three steps shared what was left, which
+   at a 900 to 1100px window squeezed each step to about 168px and broke the headings over
+   three lines. The label moves above the steps first, so they keep the full width and stay in
+   three columns until they stack outright below 900px. */
+@media (max-width: 1020px) {
+.how-row { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* Advisory services on phones: six stacked cards ran to about 1,100px of scrolling, so on
+   phones the row becomes one card at a time that you swipe or step through with the buttons.
+   The buttons only appear once the script has wired them up; without JavaScript the row is
+   still swipeable, and above 640px this all reverts to the grid. */
+.domains-controls { display: none; }
+@media (max-width: 640px) {
+.domains { display: flex; grid-template-columns: none; margin-top: 32px; gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; }
+.domains::-webkit-scrollbar { display: none; }
+.domain { display: flex; flex-direction: column; grid-row: auto; flex: 0 0 100%; scroll-snap-align: start; }
+.domain .arrow-link { margin-top: auto; padding-top: 18px; align-self: flex-start; }
+.domains-controls:not([hidden]) { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
+.domains-count { font-size: 14.5px; color: var(--slate); font-variant-numeric: tabular-nums; margin-right: auto; }
+.domains-controls .round-btn:disabled { opacity: 0.38; cursor: default; }
+.domains-controls .round-btn:disabled:hover { border-color: #b9c5d2; background: var(--white); }
+.domains:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+}
+
+/* The new-hospital roadmap on phones: as a vertical timeline the four stages ran to roughly
+   900px of scrolling on their own. One stage at a time instead, stepped with the buttons or
+   swiped. The connector rail is dropped here because the stages no longer sit end to end; the
+   numbered node and the count carry the sequence. */
+.rm-controls { display: none; }
+@media (max-width: 640px) {
+.roadmap { display: flex; margin-top: 26px; gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; }
+.roadmap::-webkit-scrollbar { display: none; }
+.rm-phase, .rm-flag { flex: 0 0 100%; scroll-snap-align: start; padding-bottom: 0; }
+.rm-phase::before, .rm-phase::after { content: none; }
+.rm-flag { align-self: start; }
+.rm-controls:not([hidden]) { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
+.rm-count { font-size: 14.5px; color: rgba(255, 255, 255, 0.82); font-variant-numeric: tabular-nums; margin-right: auto; }
+.rm-controls .round-btn { border-color: rgba(255, 255, 255, 0.45); background: transparent; color: var(--white); }
+.rm-controls .round-btn:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.12); }
+.rm-controls .round-btn:disabled { opacity: 0.35; cursor: default; }
+.rm-controls .round-btn:disabled:hover { border-color: rgba(255, 255, 255, 0.45); background: transparent; }
+.roadmap:focus-visible { outline: 2px solid var(--blue-on-navy); outline-offset: 4px; }
+}
+
+/* Between about 900px and 1050px the wheel and its detail panel still sat side by side, which
+   left the panel 408px wide and its two inner columns at 144px and 176px: long member names
+   like Vinmec Can Gio International General Hospital then broke over four lines. The wheel and
+   the panel stack first, and the panel's own two columns stay side by side because by then
+   they have the full container to share. The roadmap drops to its vertical timeline here too,
+   rather than holding four 182px columns down to 900px. */
+@media (max-width: 1050px) {
+.existing-top, .explorer { grid-template-columns: 1fr; gap: 26px; }
+.wheel-box { max-width: 340px; }
+.roadmap { display: block; margin-top: 28px; }
+.rm-phase, .rm-flag { position: relative; padding-left: calc(var(--node) + 18px); }
+.rm-phase { padding-bottom: 26px; }
+.rm-node { position: absolute; left: 0; top: 0; }
+.rm-phase::before, .rm-phase::after { top: calc(var(--node) / 2); left: calc(var(--node) / 2 - 1px); width: 2px; height: 100%; }
+.rm-phase::after { transform-origin: center top; background: linear-gradient(180deg, var(--blue-bright), #5cc3a0) !important; }
+.rm-anim .rm-phase::after { transform: scaleY(0); }
+.rm-name, .rm-flag-name { margin-top: 0; padding-top: 6px; }
+.rm-flag-note { max-width: none; }
+.rm-items { margin-top: 12px; }
+}
+
+/* The member network on phones: nine hospitals in a two-column grid ran to five rows. They
+   become a scrollable row instead, one hospital at a time with a sliver of the next showing so
+   it reads as swipeable, stepped with the buttons. Above 640px it is the grid as before. */
+.members-controls { display: none; }
+@media (max-width: 640px) {
+.members { display: flex; grid-template-columns: none; gap: 16px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; }
+.members::-webkit-scrollbar { display: none; }
+.member { flex: 0 0 86%; scroll-snap-align: start; }
+.members-controls:not([hidden]) { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.members-count { font-size: 14.5px; color: var(--slate); font-variant-numeric: tabular-nums; margin-right: auto; }
+.members-controls .round-btn:disabled { opacity: 0.38; cursor: default; }
+.members-controls .round-btn:disabled:hover { border-color: #b9c5d2; background: var(--white); }
+.members:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 }

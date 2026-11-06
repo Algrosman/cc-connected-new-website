@@ -21,6 +21,64 @@
   });
   var y = $("#year"); if (y) y.textContent = new Date().getFullYear();
 
+  /* ---------- Carousels on phones: advisory services, and the hospital roadmap ----------
+     Both are a scroll-snap row that the buttons step through. The step is measured from the
+     cards' own positions, so the gap cannot drift it out of alignment. */
+  function phoneCarousel(trackSel, ctlSel, cardSel, label) {
+    var track = $(trackSel), ctl = $(ctlSel);
+    if (!track || !ctl) return;
+    var cards = $all(cardSel, track);
+    if (cards.length < 2) return;
+    var now = $(".js-now", ctl), all = $(".js-all", ctl);
+    var prev = $(".js-prev", ctl), next = $(".js-next", ctl);
+    var phone = window.matchMedia("(max-width: 640px)");
+    var step = function () { return cards[1].offsetLeft - cards[0].offsetLeft; };
+    var index = function () {
+      var s = step();
+      var i = s > 0 ? Math.round(track.scrollLeft / s) : 0;
+      return Math.max(0, Math.min(cards.length - 1, i));
+    };
+    var sync = function () {
+      var i = index();
+      if (now) now.textContent = String(i + 1);
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i >= cards.length - 1;
+    };
+    var go = function (dir) {
+      var i = Math.max(0, Math.min(cards.length - 1, index() + dir));
+      track.scrollTo({ left: i * step(), behavior: reduceMotion ? "auto" : "smooth" });
+    };
+    if (prev) prev.addEventListener("click", function () { go(-1); });
+    if (next) next.addEventListener("click", function () { go(1); });
+    var tick;
+    track.addEventListener("scroll", function () {
+      window.clearTimeout(tick);
+      tick = window.setTimeout(sync, 90);
+    }, { passive: true });
+    var apply = function () {
+      var on = phone.matches;
+      ctl.hidden = !on;
+      if (on) {
+        track.setAttribute("tabindex", "0");
+        track.setAttribute("role", "group");
+        track.setAttribute("aria-label", label + ", " + cards.length + " items");
+        if (all) all.textContent = String(cards.length);
+        sync();
+      } else {
+        track.removeAttribute("tabindex");
+        track.removeAttribute("role");
+        track.removeAttribute("aria-label");
+        track.scrollLeft = 0;
+      }
+    };
+    if (phone.addEventListener) phone.addEventListener("change", apply);
+    else if (phone.addListener) phone.addListener(apply);
+    apply();
+  }
+  phoneCarousel(".domains", ".domains-controls", ".domain", "Advisory services");
+  phoneCarousel(".roadmap", ".rm-controls", ".rm-phase, .rm-flag", "Hospital package stages");
+  phoneCarousel(".members", ".members-controls", ".member", "Member hospitals");
+
   /* ---------- Menu on tablets and phones ---------- */
   var menuBtn = $(".menu-btn"), menu = $("#mobileMenu");
   if (menuBtn && menu) {
