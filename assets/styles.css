@@ -653,3 +653,24 @@ body { font-size: 16px; }
 .rm-controls .round-btn:disabled:hover { border-color: rgba(255, 255, 255, 0.45); background: transparent; }
 .roadmap:focus-visible { outline: 2px solid var(--blue-on-navy); outline-offset: 4px; }
 }
+
+/* Between about 900px and 1050px the wheel and its detail panel still sat side by side, which
+   left the panel 408px wide and its two inner columns at 144px and 176px: long member names
+   like Vinmec Can Gio International General Hospital then broke over four lines. The wheel and
+   the panel stack first, and the panel's own two columns stay side by side because by then
+   they have the full container to share. The roadmap drops to its vertical timeline here too,
+   rather than holding four 182px columns down to 900px. */
+@media (max-width: 1050px) {
+.existing-top, .explorer { grid-template-columns: 1fr; gap: 26px; }
+.wheel-box { max-width: 340px; }
+.roadmap { display: block; margin-top: 28px; }
+.rm-phase, .rm-flag { position: relative; padding-left: calc(var(--node) + 18px); }
+.rm-phase { padding-bottom: 26px; }
+.rm-node { position: absolute; left: 0; top: 0; }
+.rm-phase::before, .rm-phase::after { top: calc(var(--node) / 2); left: calc(var(--node) / 2 - 1px); width: 2px; height: 100%; }
+.rm-phase::after { transform-origin: center top; background: linear-gradient(180deg, var(--blue-bright), #5cc3a0) !important; }
+.rm-anim .rm-phase::after { transform: scaleY(0); }
+.rm-name, .rm-flag-name { margin-top: 0; padding-top: 6px; }
+.rm-flag-note { max-width: none; }
+.rm-items { margin-top: 12px; }
+}
