@@ -77,6 +77,7 @@
   }
   phoneCarousel(".domains", ".domains-controls", ".domain", "Advisory services");
   phoneCarousel(".roadmap", ".rm-controls", ".rm-phase, .rm-flag", "Hospital package stages");
+  phoneCarousel(".members", ".members-controls", ".member", "Member hospitals");
 
   /* ---------- Menu on tablets and phones ---------- */
   var menuBtn = $(".menu-btn"), menu = $("#mobileMenu");

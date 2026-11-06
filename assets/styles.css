@@ -674,3 +674,20 @@ body { font-size: 16px; }
 .rm-flag-note { max-width: none; }
 .rm-items { margin-top: 12px; }
 }
+
+/* The member network on phones: nine hospitals in a two-column grid ran to five rows. They
+   become a scrollable row instead, one hospital at a time with a sliver of the next showing so
+   it reads as swipeable, stepped with the buttons. Above 640px it is the grid as before. */
+.members-controls { display: none; }
+@media (max-width: 640px) {
+.members { display: flex; grid-template-columns: none; gap: 16px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; }
+.members::-webkit-scrollbar { display: none; }
+.member { flex: 0 0 86%; scroll-snap-align: start; }
+.members-controls:not([hidden]) { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.members-count { font-size: 14.5px; color: var(--slate); font-variant-numeric: tabular-nums; margin-right: auto; }
+.members-controls .round-btn:disabled { opacity: 0.38; cursor: default; }
+.members-controls .round-btn:disabled:hover { border-color: #b9c5d2; background: var(--white); }
+.members:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+}
