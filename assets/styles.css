@@ -564,6 +564,9 @@ body { font-size: 16px; }
 .hero-worldmap { width: 112%; max-width: none; right: -6%; top: auto; bottom: 0; transform: none; opacity: 0.95; }
 .hero-worldmap.hero-markers { opacity: 1; }
 .hero-inner { padding-bottom: calc(39.9vw + 24px); }
+/* The breadcrumbs are hidden at these widths, and they were what held the headline off the
+   header, so the copy sets its own breathing room instead of the 8px it had. */
+.hero-copy { padding-top: 52px; }
 }
 /* Phones get a wider draw, 150%, so the markers stay big enough to read. The 14% bleed is what
    keeps every marker on screen at that size: the markers span 27.7% to 89.2% of the image, so
@@ -573,6 +576,7 @@ body { font-size: 16px; }
 .hero-worldmap { width: 150%; max-width: none; right: -14%; top: auto; bottom: 0; transform: none; opacity: 0.95; }
 .hero-worldmap.hero-markers { opacity: 1; }
 .hero-inner { padding-bottom: calc(53.4vw + 20px); }
+.hero-copy { padding-top: 36px; }
 }
 
 /* Between about 900px and 1080px the footer's third column is narrower than the contact
