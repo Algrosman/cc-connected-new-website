@@ -130,13 +130,13 @@ mask-image: linear-gradient(90deg, #000 70%, transparent 100%);
 }
 /* Map size and position: as large as fits with the drawn map starting clear of the hero text
    and the last Vietnam marker ending 16px from the right edge. In the image the markers span
-   27.7% to 89.2% of its width, but the drawn land starts earlier, at 22%, so the map is sized
-   off that 22% edge rather than the first marker: sizing off the marker let the Pacific dots
-   run under the hero copy. 0.6716 is 89.2% - 22%, the span from the first ink to the last
-   marker. 620px reserves the copy column (572px), a 32px gap and the 16px right margin.
-   The image has a transparent background, so it needs no edge fades. */
+   27.7% to 89.2% of its width, but the drawn land starts earlier, at 21.8%, so the map is
+   sized off that 21.8% edge rather than the first marker: sizing off the marker let the
+   Pacific dots run under the hero copy. 0.6744 is 89.2% - 21.8%, the span from the first ink
+   to the last marker. 620px reserves the copy column (572px), a 32px gap and the 16px right
+   margin. The image has a transparent background, so it needs no edge fades. */
 .hero-worldmap {
---mapw: clamp(380px, calc((100% - max(0px, 50% - 600px) - 620px) / 0.6716), 2101px);
+--mapw: clamp(380px, calc((100% - max(0px, 50% - 600px) - 620px) / 0.6744), 2101px);
 position: absolute; top: 50%; right: calc(16px - 0.108 * var(--mapw)); transform: translateY(-50%);
 width: var(--mapw); height: auto; opacity: 0.95; display: block;
 }
