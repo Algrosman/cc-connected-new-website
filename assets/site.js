@@ -21,6 +21,61 @@
   });
   var y = $("#year"); if (y) y.textContent = new Date().getFullYear();
 
+  /* ---------- Advisory services, one card at a time on phones ---------- */
+  var domTrack = $(".domains"), domCtl = $(".domains-controls");
+  if (domTrack && domCtl) {
+    var domCards = $all(".domain", domTrack);
+    var domNow = $("#domainsNow"), domAll = $("#domainsAll");
+    var domPrev = $(".domains-prev"), domNext = $(".domains-next");
+    var phone = window.matchMedia("(max-width: 640px)");
+    /* Measured rather than assumed, so the gap and any rounding come out in the wash. */
+    var domStep = function () {
+      if (domCards.length > 1) return domCards[1].offsetLeft - domCards[0].offsetLeft;
+      return domTrack.clientWidth;
+    };
+    var domIndex = function () {
+      var s = domStep();
+      var i = s > 0 ? Math.round(domTrack.scrollLeft / s) : 0;
+      return Math.max(0, Math.min(domCards.length - 1, i));
+    };
+    var domSync = function () {
+      var i = domIndex();
+      if (domNow) domNow.textContent = String(i + 1);
+      if (domPrev) domPrev.disabled = i === 0;
+      if (domNext) domNext.disabled = i >= domCards.length - 1;
+    };
+    var domGo = function (dir) {
+      var i = Math.max(0, Math.min(domCards.length - 1, domIndex() + dir));
+      domTrack.scrollTo({ left: i * domStep(), behavior: reduceMotion ? "auto" : "smooth" });
+    };
+    if (domPrev) domPrev.addEventListener("click", function () { domGo(-1); });
+    if (domNext) domNext.addEventListener("click", function () { domGo(1); });
+    var domTick;
+    domTrack.addEventListener("scroll", function () {
+      window.clearTimeout(domTick);
+      domTick = window.setTimeout(domSync, 90);
+    }, { passive: true });
+    var domApply = function () {
+      var on = phone.matches;
+      domCtl.hidden = !on;
+      if (on) {
+        domTrack.setAttribute("tabindex", "0");
+        domTrack.setAttribute("role", "group");
+        domTrack.setAttribute("aria-label", "Advisory services, " + domCards.length + " cards");
+        if (domAll) domAll.textContent = String(domCards.length);
+        domSync();
+      } else {
+        domTrack.removeAttribute("tabindex");
+        domTrack.removeAttribute("role");
+        domTrack.removeAttribute("aria-label");
+        domTrack.scrollLeft = 0;
+      }
+    };
+    if (phone.addEventListener) phone.addEventListener("change", domApply);
+    else if (phone.addListener) phone.addListener(domApply);
+    domApply();
+  }
+
   /* ---------- Menu on tablets and phones ---------- */
   var menuBtn = $(".menu-btn"), menu = $("#mobileMenu");
   if (menuBtn && menu) {

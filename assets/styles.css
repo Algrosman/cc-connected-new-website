@@ -612,3 +612,22 @@ body { font-size: 16px; }
 @media (max-width: 1020px) {
 .how-row { grid-template-columns: 1fr; gap: 20px; }
 }
+
+/* Advisory services on phones: six stacked cards ran to about 1,100px of scrolling, so on
+   phones the row becomes one card at a time that you swipe or step through with the buttons.
+   The buttons only appear once the script has wired them up; without JavaScript the row is
+   still swipeable, and above 640px this all reverts to the grid. */
+.domains-controls { display: none; }
+@media (max-width: 640px) {
+.domains { display: flex; grid-template-columns: none; margin-top: 32px; gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none; }
+.domains::-webkit-scrollbar { display: none; }
+.domain { display: flex; flex-direction: column; grid-row: auto; flex: 0 0 100%; scroll-snap-align: start; }
+.domain .arrow-link { margin-top: auto; padding-top: 18px; align-self: flex-start; }
+.domains-controls:not([hidden]) { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
+.domains-count { font-size: 14.5px; color: var(--slate); font-variant-numeric: tabular-nums; margin-right: auto; }
+.domains-controls .round-btn:disabled { opacity: 0.38; cursor: default; }
+.domains-controls .round-btn:disabled:hover { border-color: #b9c5d2; background: var(--white); }
+.domains:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+}
